@@ -126,13 +126,13 @@ export default function Footer() {
                     href="mailto:hello@webdevpro.id"
                     className="hover:text-indigo-400 transition-colors"
                   >
-                    hello@webdevpro.id
+                    shikizimacorp@shikizimastudio.id
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="text-indigo-400 flex-shrink-0 mt-1" />
-                <div>Jakarta, Indonesia</div>
+                <div>Denpasar, Indonesia</div>
               </li>
             </ul>
           </div>

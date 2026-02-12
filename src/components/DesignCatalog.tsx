@@ -38,7 +38,7 @@ export default function DesignCatalog() {
       vibe: 'Soft pastels, elegant, calming',
       colors: ['bg-pink-100', 'bg-purple-100', 'bg-rose-50'],
       description: 'Desain elegan dengan pastel colors, typography yang sophisticated, dan before-after showcase.',
-      image: 'https://images.unsplash.com/photo-1576091160550-112173f1f664?w=500&h=350&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
     },
     {
       id: 5,
@@ -105,7 +105,7 @@ export default function DesignCatalog() {
                 onHoverEnd={() => setHoveredCard(null)}
                 className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group border-2 border-transparent hover:border-indigo-600"
               >
-                <div className="aspect-video relative overflow-hidden bg-gray-200">
+                <div className="aspect-video relative overflow-hidden bg-slate-50">
                   <img
                     src={design.image}
                     alt={design.category}
