@@ -1,6 +1,36 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Eye } from 'lucide-react';
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Eye } from "lucide-react";
+
+function ImageWithSkeleton({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <>
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-slate-200 animate-pulse z-0" />
+      )}
+
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setIsLoaded(true)}
+        className={`${className} transition-all duration-700 ${
+          isLoaded ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+        }`}
+      />
+    </>
+  );
+}
 
 export default function DesignCatalog() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -10,64 +40,76 @@ export default function DesignCatalog() {
   const designs = [
     {
       id: 1,
-      category: 'Kuliner & Cafe',
-      vibe: 'Warm, appetizing, inviting',
-      colors: ['bg-amber-100', 'bg-orange-100', 'bg-red-50'],
-      description: 'Website hangat dengan typography yang mengundang, high-quality food imagery, dan CTA order yang prominent.',
-      image: 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=350&fit=crop&q=80',
+      category: "Kuliner & Cafe",
+      vibe: "Warm, appetizing, inviting",
+      colors: ["bg-amber-100", "bg-orange-100", "bg-red-50"],
+      description:
+        "Website hangat dengan typography yang mengundang, high-quality food imagery, dan CTA order yang prominent.",
+      image:
+        "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 2,
-      category: 'Fashion & Retail',
-      vibe: 'Clean, image-focused, minimalist',
-      colors: ['bg-gray-100', 'bg-slate-100', 'bg-white'],
-      description: 'Desain minimalis dengan fokus pada visual produk, navigasi intuitif, dan katalog yang mudah dibrowser.',
-      image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=350&fit=crop&q=80',
+      category: "Fashion & Retail",
+      vibe: "Clean, image-focused, minimalist",
+      colors: ["bg-gray-100", "bg-slate-100", "bg-white"],
+      description:
+        "Desain minimalis dengan fokus pada visual produk, navigasi intuitif, dan katalog yang mudah dibrowser.",
+      image:
+        "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 3,
-      category: 'Corporate & Jasa',
-      vibe: 'Blue/Grey, trustworthy, clean',
-      colors: ['bg-blue-100', 'bg-slate-100', 'bg-indigo-50'],
-      description: 'Professional dengan color palette biru-abu, trust signals, case studies, dan expertise showcase.',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=350&fit=crop&q=80',
+      category: "Corporate & Jasa",
+      vibe: "Blue/Grey, trustworthy, clean",
+      colors: ["bg-blue-100", "bg-slate-100", "bg-indigo-50"],
+      description:
+        "Professional dengan color palette biru-abu, trust signals, case studies, dan expertise showcase.",
+      image:
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 4,
-      category: 'Beauty & Wellness',
-      vibe: 'Soft pastels, elegant, calming',
-      colors: ['bg-pink-100', 'bg-purple-100', 'bg-rose-50'],
-      description: 'Desain elegan dengan pastel colors, typography yang sophisticated, dan before-after showcase.',
-      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800',
+      category: "Beauty & Wellness",
+      vibe: "Soft pastels, elegant, calming",
+      colors: ["bg-pink-100", "bg-purple-100", "bg-rose-50"],
+      description:
+        "Desain elegan dengan pastel colors, typography yang sophisticated, dan before-after showcase.",
+      image:
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 5,
-      category: 'Tech & Startup',
-      vibe: 'Dark mode, neon accents, modern',
-      colors: ['bg-slate-900', 'bg-blue-900', 'bg-purple-900'],
-      description: 'Modern dark aesthetic dengan neon accents, futuristic vibes, dan tech-forward animations.',
-      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=350&fit=crop&q=80',
+      category: "Tech & Startup",
+      vibe: "Dark mode, neon accents, modern",
+      colors: ["bg-slate-900", "bg-blue-900", "bg-purple-900"],
+      description:
+        "Modern dark aesthetic dengan neon accents, futuristic vibes, dan tech-forward animations.",
+      image:
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800",
     },
     {
       id: 6,
-      category: 'Event & Portfolio',
-      vibe: 'Bold typography, artistic, creative',
-      colors: ['bg-yellow-100', 'bg-fuchsia-100', 'bg-cyan-100'],
-      description: 'Bold design dengan typography yang menonjol, gallery showcase, dan creative storytelling.',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=350&fit=crop&q=80',
+      category: "Event & Portfolio",
+      vibe: "Bold typography, artistic, creative",
+      colors: ["bg-yellow-100", "bg-fuchsia-100", "bg-cyan-100"],
+      description:
+        "Bold design dengan typography yang menonjol, gallery showcase, dan creative storytelling.",
+      image:
+        "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=800",
     },
   ];
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
       const scrollAmount = 340;
       const newPosition =
-        direction === 'left'
+        direction === "left"
           ? scrollPosition - scrollAmount
           : scrollPosition + scrollAmount;
       carouselRef.current.scrollTo({
         left: newPosition,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
       setScrollPosition(newPosition);
     }
@@ -83,7 +125,7 @@ export default function DesignCatalog() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Pilih Identitas Digital{' '}
+            Pilih Identitas Digital{" "}
             <span className="text-indigo-700">Bisnis Anda</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -97,26 +139,43 @@ export default function DesignCatalog() {
               <motion.div
                 key={design.id}
                 initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                // 2. ANIMASI MASUK (Entrance)
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    delay: index * 0.1, 
+                    duration: 0.5,
+                    ease: "easeOut",
+                  },
+                }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6 }}
-                whileHover={{ scale: 1.05, y: -10 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                  transition: {
+                    delay: 0,
+                    duration: 0.2,
+                    ease: "easeInOut",
+                  },
+                }}
                 onHoverStart={() => setHoveredCard(design.id)}
                 onHoverEnd={() => setHoveredCard(null)}
                 className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group border-2 border-transparent hover:border-indigo-600"
               >
+                {/* IMPLEMENTASI SKELETON (DESKTOP) */}
                 <div className="aspect-video relative overflow-hidden bg-slate-50">
-                  <img
+                  <ImageWithSkeleton
                     src={design.image}
                     alt={design.category}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105"
                   />
 
                   {hoveredCard === design.id && (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="absolute inset-0 bg-black/40 flex items-center justify-center"
+                      className="absolute inset-0 bg-black/40 flex items-center justify-center z-10"
                     >
                       <motion.button
                         whileHover={{ scale: 1.1 }}
@@ -160,7 +219,7 @@ export default function DesignCatalog() {
           <div
             ref={carouselRef}
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth"
-            style={{ scrollBehavior: 'smooth' }}
+            style={{ scrollBehavior: "smooth" }}
           >
             {designs.map((design) => (
               <motion.div
@@ -168,8 +227,9 @@ export default function DesignCatalog() {
                 className="flex-shrink-0 w-80 rounded-2xl shadow-lg overflow-hidden snap-start border-2 border-transparent hover:border-indigo-600 transition-all"
                 whileHover={{ scale: 1.05, y: -10 }}
               >
-                <div className="aspect-video relative overflow-hidden bg-gray-200">
-                  <img
+                {/* IMPLEMENTASI SKELETON (MOBILE) */}
+                <div className="aspect-video relative overflow-hidden bg-slate-50">
+                  <ImageWithSkeleton
                     src={design.image}
                     alt={design.category}
                     className="w-full h-full object-cover"
@@ -214,7 +274,7 @@ export default function DesignCatalog() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scroll('left')}
+              onClick={() => scroll("left")}
               className="w-12 h-12 rounded-full bg-indigo-700 text-white flex items-center justify-center hover:bg-indigo-800 transition-colors"
             >
               ←
@@ -222,7 +282,7 @@ export default function DesignCatalog() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scroll('right')}
+              onClick={() => scroll("right")}
               className="w-12 h-12 rounded-full bg-indigo-700 text-white flex items-center justify-center hover:bg-indigo-800 transition-colors"
             >
               →
