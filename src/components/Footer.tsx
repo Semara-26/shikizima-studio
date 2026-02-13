@@ -123,7 +123,7 @@ export default function Footer() {
                 <Mail size={16} className="text-indigo-400 flex-shrink-0 mt-1" />
                 <div>
                   <a
-                    href="mailto:hello@webdevpro.id"
+                    href="mailto:shikizimacorp@shikizimastudio.id"
                     className="hover:text-indigo-400 transition-colors"
                   >
                     shikizimacorp@shikizimastudio.id
